@@ -1,0 +1,53 @@
+plugins {
+    id 'java'
+    id 'io.gatling.gradle' version '3.10.5.1'
+}
+
+gatling {
+    logLevel = 'TRACE'
+    logHttp = 'ALL'
+    simulations = {
+        include("**/SpaceSimulation.java")
+    }
+    gatlingVersion = '3.10.5'
+}
+
+repositories {
+    mavenCentral()
+}
+
+ext {
+    gsonVersion = '2.10.1'
+    jsonpathVersion = '2.9.0'
+    lombokVersion = '1.18.30'
+    commonsLang3Version = '3.14.0'
+    retrofitVersion = '2.9.0'
+    awaitilityVersion = '4.2.0'
+    assertjVersion = '3.25.3'
+    scalaLibraryVersion = '2.13.12'
+    postgresqlVersion = '42.6.0'
+    snakeyamlVersion = '2.2'
+    apacheCommonsVersion = '4.4'
+}
+
+dependencies {
+    gatlingImplementation "com.google.code.gson:gson:${gsonVersion}"
+    gatlingImplementation "com.jayway.jsonpath:json-path:${jsonpathVersion}"
+    gatlingImplementation "org.projectlombok:lombok:${lombokVersion}"
+    gatlingAnnotationProcessor "org.projectlombok:lombok:${lombokVersion}"
+    gatlingImplementation "org.apache.commons:commons-lang3:${commonsLang3Version}"
+    gatlingImplementation "com.squareup.retrofit2:retrofit:${retrofitVersion}"
+    gatlingImplementation "com.squareup.retrofit2:converter-gson:${retrofitVersion}"
+    gatlingImplementation "org.awaitility:awaitility:${awaitilityVersion}"
+    gatlingImplementation "org.assertj:assertj-core:${assertjVersion}"
+    gatlingImplementation "org.scala-lang:scala-library:${scalaLibraryVersion}"
+    gatlingImplementation "org.postgresql:postgresql:${postgresqlVersion}"
+    gatlingImplementation "org.yaml:snakeyaml:${snakeyamlVersion}"
+    gatlingImplementation "org.apache.commons:commons-collections4:${apacheCommonsVersion}"
+}
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(17)
+    }
+}
