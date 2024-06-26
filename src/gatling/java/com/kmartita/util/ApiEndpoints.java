@@ -5,7 +5,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
-public class ApiPathConstant {
+public class ApiEndpoints {
 
     @Getter
     public static final String TEAMS_PATH = "/api/v2/team";

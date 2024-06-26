@@ -1,4 +1,4 @@
-package com.kmartita.data.config;
+package com.kmartita.config.data;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -9,8 +9,7 @@ import javax.annotation.Nonnull;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Api {
+public class Workspace {
 
-    @Nonnull private String url;
-    @Nonnull private String token;
+    @Nonnull private String username;
 }

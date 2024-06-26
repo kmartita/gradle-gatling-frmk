@@ -1,4 +1,4 @@
-package com.kmartita.data.http;
+package com.kmartita.http;
 
 import lombok.SneakyThrows;
 import retrofit2.Call;
@@ -6,7 +6,7 @@ import retrofit2.Response;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class ApiCaller {
+public class HttpRequestExecutor {
 
     @SneakyThrows
     public static <S> Response<S> execute(Call<S> caller, int code) {

@@ -6,10 +6,10 @@ import lombok.NoArgsConstructor;
 import org.apache.commons.lang3.StringUtils;
 
 import static com.kmartita.config.ConfigReader.BASE_URL;
-import static com.kmartita.util.ApiPathConstant.*;
+import static com.kmartita.util.ApiEndpoints.*;
 
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
-public class RequestConstant {
+public class ApiUrls {
 
     @Getter
     public static final String TEAMS = convertString(BASE_URL + TEAMS_PATH.replaceFirst("/", StringUtils.EMPTY));

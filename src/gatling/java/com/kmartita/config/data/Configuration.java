@@ -1,15 +1,14 @@
-package com.kmartita.data.config;
+package com.kmartita.config.data;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.annotation.Nonnull;
-
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Workspace {
+public class Configuration {
 
-    @Nonnull private String username;
+    private Api api;
+    private Workspace workspace;
 }

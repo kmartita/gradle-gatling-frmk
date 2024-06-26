@@ -1,4 +1,4 @@
-package com.kmartita.data.http;
+package com.kmartita.http;
 
 
 import lombok.extern.slf4j.Slf4j;
@@ -12,7 +12,7 @@ import java.util.Arrays;
 import java.util.Objects;
 
 @Slf4j
-public class LoggingInterceptor implements Interceptor {
+public class HttpLoggingInterceptor implements Interceptor {
 
     private static final int MAX_RESPONSE_BODY_LENGTH_FOR_DISPLAY = 500000;
 

@@ -1,4 +1,4 @@
-package com.kmartita.request;
+package com.kmartita.data.request;
 
 import com.kmartita.config.ConfigReader;
 import io.gatling.javaapi.core.ChainBuilder;
@@ -6,8 +6,8 @@ import io.gatling.javaapi.core.ChainBuilder;
 import java.util.Objects;
 
 import static com.kmartita.config.ConfigReader.TOKEN;
-import static com.kmartita.util.Constant.AUTHORIZATION;
-import static com.kmartita.util.RequestConstant.TEAMS;
+import static com.kmartita.util.ApiConstants.AUTHORIZATION;
+import static com.kmartita.util.ApiUrls.TEAMS;
 import static com.kmartita.util.SessionMapping.TEAM_ID;
 import static io.gatling.javaapi.core.CoreDsl.exec;
 import static io.gatling.javaapi.core.CoreDsl.jsonPath;

@@ -1,6 +1,6 @@
 package com.kmartita.config;
 
-import com.kmartita.data.config.ConfigModel;
+import com.kmartita.config.data.Configuration;
 import org.yaml.snakeyaml.Yaml;
 
 import java.io.InputStream;
@@ -8,10 +8,10 @@ import java.util.Objects;
 
 public class ConfigReader {
 
-    private final static ConfigModel CONFIG_MODEL = new Yaml().loadAs(getResourceAsStream(), ConfigModel.class);
+    private final static Configuration CONFIGURATION = new Yaml().loadAs(getResourceAsStream(), Configuration.class);
 
-    public static ConfigModel getConfig() {
-        return CONFIG_MODEL;
+    public static Configuration getConfig() {
+        return CONFIGURATION;
     }
 
     public static final String BASE_URL = Objects.requireNonNull(getConfig().getApi().getUrl(),
@@ -24,5 +24,4 @@ public class ConfigReader {
                 .getClassLoader()
                 .getResourceAsStream("config/local.yaml");
     }
-
 }

@@ -1,4 +1,4 @@
-package com.kmartita.data.http;
+package com.kmartita.http;
 
 import com.kmartita.data.Records;
 import com.kmartita.data.endpoint.space.model.Space;
@@ -9,10 +9,10 @@ import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.Path;
 
-import static com.kmartita.util.Constant.AUTHORIZATION;
-import static com.kmartita.util.ApiPathConstant.*;
+import static com.kmartita.util.ApiConstants.AUTHORIZATION;
+import static com.kmartita.util.ApiEndpoints.*;
 
-public interface RestApi {
+public interface ApiService {
 
     @GET(TEAMS_PATH)
     Call<Records<Team>> getTeamsQuery(@Header(AUTHORIZATION) String authorization);

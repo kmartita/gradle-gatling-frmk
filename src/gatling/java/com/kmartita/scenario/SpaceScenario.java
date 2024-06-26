@@ -1,6 +1,6 @@
 package com.kmartita.scenario;
 
-import com.kmartita.request.SpaceRequest;
+import com.kmartita.data.request.SpaceRequest;
 import io.gatling.javaapi.core.ScenarioBuilder;
 
 import java.time.Duration;

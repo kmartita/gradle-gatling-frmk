@@ -5,7 +5,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
-public class Constant {
+public class ApiConstants {
 
     @Getter
     public static final String AUTHORIZATION = "Authorization";

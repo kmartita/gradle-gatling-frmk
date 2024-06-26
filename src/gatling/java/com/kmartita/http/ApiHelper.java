@@ -1,4 +1,4 @@
-package com.kmartita.data.http;
+package com.kmartita.http;
 
 import com.kmartita.config.ConfigReader;
 import com.kmartita.data.endpoint.space.Spaces;
@@ -15,12 +15,12 @@ import static java.lang.String.*;
 import static java.util.Collections.*;
 
 @Slf4j
-public class RestHelper {
+public class ApiHelper {
 
-    private static final RestApi REST_API = RestApiProvider.getRestApi(RestApi.class);
+    private static final ApiService API_SERVICE = ApiClientFactory.getRestApi(ApiService.class);
 
     private static Teams getTeamResponse() {
-        return ApiCaller.execute(REST_API.getTeamsQuery(ConfigReader.TOKEN), OK.code()).body();
+        return HttpRequestExecutor.execute(API_SERVICE.getTeamsQuery(ConfigReader.TOKEN), OK.code()).body();
     }
 
     public static String getTeamId(){
@@ -39,15 +39,15 @@ public class RestHelper {
     }
 
     private static Spaces getSpaceResponse() {
-        return ApiCaller.execute(REST_API.getSpacesQuery(getTeamId(), ConfigReader.TOKEN), OK.code()).body();
+        return HttpRequestExecutor.execute(API_SERVICE.getSpacesQuery(getTeamId(), ConfigReader.TOKEN), OK.code()).body();
     }
 
     private static void deleteSpaceResponse(String id) {
-        ApiCaller.execute(REST_API.deleteSpaceQuery(id, ConfigReader.TOKEN), OK.code());
+        HttpRequestExecutor.execute(API_SERVICE.deleteSpaceQuery(id, ConfigReader.TOKEN), OK.code());
     }
 
     public static void clearSpaces() {
-        Spaces spaces = RestHelper.getSpaceResponse();
+        Spaces spaces = ApiHelper.getSpaceResponse();
         if (!spaces.getSpaces().isEmpty()) {
             deleteSpaces(spaces.getSpaces());
         }

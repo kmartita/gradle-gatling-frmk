@@ -1,12 +1,13 @@
-package com.kmartita.config;
+package com.kmartita.http;
 
+import com.kmartita.config.ConfigReader;
 import io.gatling.javaapi.http.HttpProtocolBuilder;
 import java.util.Map;
 
-import static com.kmartita.util.Constant.AUTHORIZATION;
+import static com.kmartita.util.ApiConstants.AUTHORIZATION;
 import static io.gatling.javaapi.http.HttpDsl.http;
 
-public class HttpConfig {
+public class HttpProtocolConfig {
 
     public static HttpProtocolBuilder getHttpProtocol() {
         return http

@@ -1,6 +1,6 @@
-package com.kmartita.request;
+package com.kmartita.data.request;
 
-import com.kmartita.util.Verification;
+import com.kmartita.util.JsonResponseVerification;
 import io.gatling.javaapi.core.ChainBuilder;
 import io.gatling.javaapi.core.CoreDsl;
 import org.apache.commons.lang3.RandomStringUtils;
@@ -8,10 +8,10 @@ import org.apache.commons.lang3.RandomStringUtils;
 import java.util.*;
 
 import static com.kmartita.config.ConfigReader.TOKEN;
-import static com.kmartita.util.Constant.AUTHORIZATION;
-import static com.kmartita.util.RequestConstant.SPACE;
-import static com.kmartita.util.RequestConstant.SPACES;
-import static com.kmartita.request.TeamRequest.getTeamId;
+import static com.kmartita.util.ApiConstants.AUTHORIZATION;
+import static com.kmartita.util.ApiUrls.SPACE;
+import static com.kmartita.util.ApiUrls.SPACES;
+import static com.kmartita.data.request.TeamRequest.getTeamId;
 import static com.kmartita.util.SessionMapping.SPACE_ID;
 import static io.gatling.javaapi.core.CoreDsl.exec;
 import static io.gatling.javaapi.core.CoreDsl.jsonPath;
@@ -56,7 +56,7 @@ public class SpaceRequest {
                         .body(CoreDsl.ElFileBody("json/space.json"))
                         .asJson()
                         .check(status().is(OK.code()))
-                        .check(Verification.verifyResponseId().saveAs(SPACE_ID)));
+                        .check(JsonResponseVerification.verifyResponseId().saveAs(SPACE_ID)));
     }
 
     public static ChainBuilder updateSpace() {
@@ -67,7 +67,7 @@ public class SpaceRequest {
                 .body(CoreDsl.ElFileBody("json/space.json"))
                 .asJson()
                 .check(status().is(OK.code()))
-                .check(Verification.verifyResponseId()));
+                .check(JsonResponseVerification.verifyResponseId()));
     }
 
     public static ChainBuilder getSpaceById() {
@@ -75,7 +75,7 @@ public class SpaceRequest {
                 .get(SPACE)
                 .asJson()
                 .check(status().is(OK.code()))
-                .check(Verification.verifyResponseId()));
+                .check(JsonResponseVerification.verifyResponseId()));
     }
 
     public static ChainBuilder deleteSpaceById() {
