@@ -7,7 +7,7 @@ gatling {
     logLevel = 'TRACE'
     logHttp = 'ALL'
     simulations = {
-        include("**/SpaceSimulation.java")
+        include("**/AuthorizedUserSimulation.java")
     }
     gatlingVersion = '3.10.5'
 }

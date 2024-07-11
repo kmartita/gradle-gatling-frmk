@@ -12,11 +12,13 @@ import static com.kmartita.util.ApiEndpoints.*;
 public class ApiUrls {
 
     @Getter
-    public static final String TEAMS = convertString(BASE_URL + TEAMS_PATH.replaceFirst("/", StringUtils.EMPTY));
+    public static final String USER = getUrl(USER_PATH);
     @Getter
-    public static final String SPACES = convertString(BASE_URL + SPACES_PATH.replaceFirst("/", StringUtils.EMPTY));
+    public static final String TEAMS = getUrl(TEAMS_PATH);
     @Getter
-    public static final String SPACE = convertString(BASE_URL + SPACE_PATH.replaceFirst("/", StringUtils.EMPTY));
+    public static final String SPACES = getUrl(SPACES_PATH);
+    @Getter
+    public static final String SPACE = getUrl(SPACE_PATH);
 
     private static String convertString(String input) {
         String[] parts = input.split("\\{");
@@ -30,5 +32,9 @@ public class ApiUrls {
         }
 
         return output.toString();
+    }
+
+    private static String getUrl(String endpoint){
+        return convertString(BASE_URL + endpoint.replaceFirst("/", StringUtils.EMPTY));
     }
 }

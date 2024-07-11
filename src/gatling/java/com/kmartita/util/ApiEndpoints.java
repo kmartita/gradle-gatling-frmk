@@ -8,6 +8,8 @@ import lombok.NoArgsConstructor;
 public class ApiEndpoints {
 
     @Getter
+    public static final String USER_PATH = "/api/v2/user";
+    @Getter
     public static final String TEAMS_PATH = "/api/v2/team";
     @Getter
     public static final String SPACES_PATH = "/api/v2/team/{team_id}/space";
