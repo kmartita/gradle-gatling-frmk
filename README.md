@@ -50,11 +50,11 @@ The typical Gradle project structure for use with the Gatling framework includes
     * `resources/`: This directory contains configuration files, test data, and other resources used in Gatling simulations.<br/>
 
 ## 4. Running Simulations
-Before running simulations, please add a hidden `local.yaml` file using the following structure:<br/>
+Before running simulations, please create a hidden `local.yaml` file using the following structure:<br/>
 ```
 api:
     url: 'https://api.clickup.com/'
-     token: ‘{token}’
+    token: ‘{token}’
 
 workspace:
     username: ‘{username}’
@@ -62,7 +62,7 @@ workspace:
 **Note:**
 * Replace `{token}` with your personal token.<br/>
 * Replace `{username}` with your username used during authorization.<br/>
-To obtain your personal token, please refer to the [helper](https://help.clickup.com/hc/en-us/articles/6303426241687-Use-the-ClickUp-API).
+  To obtain your personal token, please refer to the [helper](https://help.clickup.com/hc/en-us/articles/6303426241687-Use-the-ClickUp-API).<br/>
 
 #### Gradle Command Terminal
 The `simulations = { }` block in the `build.gradle` file is used to specify which Gatling simulation files should be included when running the command:<br/>
