@@ -12,3 +12,6 @@ build/
 
 # Package files
 *.jar
+
+# Ignore configuration file
+**/local.yaml

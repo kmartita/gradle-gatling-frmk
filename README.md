@@ -1,4 +1,4 @@
-# Gatling Load Testing Project (Java Demo Automation Project)
+# Gatling Load Testing Demo Automation Project
 
 This project is written in Java and utilizes the Gatling plugin for Gradle. For detailed usage, please refer to the [plugin documentation](https://docs.gatling.io/reference/integrations/build-tools/gradle-plugin/) on the Gatling website.<br/>
 
@@ -36,6 +36,8 @@ The typical Gradle project structure for use with the Gatling framework includes
         |—-gatling/
             |—-java/
             |—-resources/
+                |—-config/
+                    |—-local.yaml
 ```
 * `gradle/`: This directory typically contains Gradle wrapper files and settings required for building the project using Gradle.<br/>
 * `build/`: This directory is where the build output, such as compiled classes, packaged jars, and build logs, are stored.<br/>
@@ -48,6 +50,20 @@ The typical Gradle project structure for use with the Gatling framework includes
     * `resources/`: This directory contains configuration files, test data, and other resources used in Gatling simulations.<br/>
 
 ## 4. Running Simulations
+Before running simulations, please create a hidden `local.yaml` file using the following structure:<br/>
+```
+api:
+    url: 'https://api.clickup.com/'
+    token: ‘{token}’
+
+workspace:
+    username: ‘{username}’
+```
+**Note:**
+* Replace `{token}` with your personal token.<br/>
+* Replace `{username}` with your username used during authorization.<br/>
+  To obtain your personal token, please refer to the [helper](https://help.clickup.com/hc/en-us/articles/6303426241687-Use-the-ClickUp-API).
+
 #### Gradle Command Terminal
 The `simulations = { }` block in the `build.gradle` file is used to specify which Gatling simulation files should be included when running the command:<br/>
 
