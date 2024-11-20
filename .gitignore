@@ -12,3 +12,6 @@ build/
 
 # Package files
 *.jar
+
+# Ignore congiguration file
+**/local.yaml
