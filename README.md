@@ -8,6 +8,7 @@ This project is written in Java and utilizes the Gatling plugin for Gradle. For 
 3. Project Structure<br/>
 4. Running Simulations<br/>
 5. Reviewing Reports<br/>
+6. Example Load Testing Scenario (performed for ClickUp)<br/>
 
 ## 1. Getting Started
 - Ensure you have Java JDK installed.<br/>
@@ -79,3 +80,70 @@ In Gatling, once you run your performance tests using the `./gradlew gatlingRun`
 * `simulation.log`: A log file that records detailed information about the simulation run, including request responses, errors, and debug information.<br/>
 
 When reviewing reports in Gatling, you can analyze key performance indicators such as response times, throughput, error rates, and other metrics to assess the performance of your system under the defined load. The visual representations provided in the HTML reports make it easier to identify performance bottlenecks, trends, and areas for improvement in your application.<br/>
+
+## 6. Example Load Testing Scenario (performed for ClickUp)
+This example outlines a load testing scenario conducted using the Gatling framework for the ClickUp application. The objective is to evaluate the server's performance under varying load conditions and identify potential bottlenecks.<br/>
+
+### Load Simulation Parameters
+1. **Initial Load Phase**: 
+    * **20 users/sec for 20 seconds**
+2. Ramp-up Phase:
+    * Gradually increase to **100 users/sec over 30 seconds**
+
+### Simulation Code
+```
+setUp(
+    getAuthorizedUserScenario()
+        .injectOpen(
+            constantUsersPerSec(20).during(Duration.ofSeconds(20)),
+            rampUsersPerSec(20).to(100).during(Duration.ofSeconds(30))
+        )
+        .protocols(HttpProtocolConfig.getHttpProtocol()));
+```
+
+### Test Results Summary
+```
+===================================================================
+---- Global Information -------------------------------------------
+> request count                    2200   (OK=108      KO=2092  )
+> min response time                128    (OK=148      KO=128   )
+> max response time                20174  (OK=20174    KO=13137 )
+> mean response time               1058   (OK=1257     KO=1048  )
+> std deviation                    2432   (OK=3957     KO=2326  )
+> response time 50th percentile    139    (OK=162      KO=139   )
+> response time 75th percentile    161    (OK=170      KO=149   )
+> response time 95th percentile    7141   (OK=11185    KO=7141  )
+> response time 99th percentile    11141  (OK=19955    KO=10144 )
+> mean requests/sec                30.986 (OK=1.521    KO=29.465)
+
+---- Response Time Distribution -----------------------------------
+> t < 800 ms                       99   (5% )
+> 800 ms <= t < 1200 ms            1    (0% )
+> t >= 1200 ms                     8    (0% )
+> failed                           2092 (95%)
+
+---- Errors -------------------------------------------------------
+> status.find.is(200), but actually found 429       2092 (100.0%)
+===================================================================
+```
+
+### Assessment of Results
+* **Request Limit Exceeded:** The test showed a 429 error status for 95% of the requests, indicating that the load significantly surpassed the server's capacity to handle requests.<br/>
+* **Significant Response Delays:** The server exhibited long response times, with the maximum response delay peaking at 20174 ms.<br/>
+
+### Recommendations for Improvement
+1. **Decrease Load:** To improve performance, consider reducing the load in simulations or ramping up more gradually. The following configuration can be utilized:<br/>
+```
+setUp(
+    getAuthorizedUserScenario()
+        .injectOpen(
+            constantUsersPerSec(20).during(Duration.ofSeconds(20)),
+            rampUsersPerSec(20).to(50).during(Duration.ofSeconds(30))
+        )
+        .protocols(HttpProtocolConfig.getHttpProtocol()));
+```
+2. **Implement Error Handling Logic:** It's advisable to integrate error-handling mechanisms into testing scenarios, such as automatically retrying requests upon receiving a 429 status code, with a suitable delay between retry attempts.<br/>
+
+### Reporting Results
+![result1](https://github.com/user-attachments/assets/186e2f6d-3148-45b4-ab8e-97e3b6c42408)
+![result2](https://github.com/user-attachments/assets/16cb374a-e493-4108-893d-5f047e62fff4)
