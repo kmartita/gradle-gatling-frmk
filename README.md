@@ -149,5 +149,8 @@ setUp(
 ```
 2. **Implement Error Handling Logic:** It's advisable to integrate error-handling mechanisms into testing scenarios, such as automatically retrying requests upon receiving a 429 status code, with a suitable delay between retry attempts.<br/>
 
-#### Reporting Results
+#### Reporting Results:
+<img width="1917" height="1315" alt="result1" src="https://github.com/user-attachments/assets/e6f44aae-16f6-45f0-93cc-5327c8b4d410" />
+<img width="1917" height="1216" alt="result2" src="https://github.com/user-attachments/assets/1873e716-2b95-44ca-9565-3df042ee09c2" />
+
 
