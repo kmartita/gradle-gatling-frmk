@@ -96,14 +96,18 @@ This example outlines a load testing scenario conducted using the Gatling framew
     * Gradually increase to **100 users/sec over 30 seconds**
 
 #### Simulation Code
-```text
-setUp(
-    getAuthorizedUserScenario()
-        .injectOpen(
-            constantUsersPerSec(20).during(Duration.ofSeconds(20)),
-            rampUsersPerSec(20).to(100).during(Duration.ofSeconds(30))
-        )
-        .protocols(HttpProtocolConfig.getHttpProtocol()));
+```java
+public class AuthorizedUserSimulation extends Simulation {
+    {
+        setUp(
+            getAuthorizedUserScenario()
+                .injectOpen(
+                    constantUsersPerSec(20).during(Duration.ofSeconds(20)),
+                    rampUsersPerSec(20).to(100).during(Duration.ofSeconds(30))
+                )
+                .protocols(HttpProtocolConfig.getHttpProtocol()));
+    }
+}
 ```
 
 #### Test Results Summary
@@ -138,14 +142,18 @@ setUp(
 
 #### Recommendations for Improvement
 1. **Decrease Load:** To improve performance, consider reducing the load in simulations or ramping up more gradually. The following configuration can be utilized:<br/>
-```text
-setUp(
-    getAuthorizedUserScenario()
-        .injectOpen(
-            constantUsersPerSec(20).during(Duration.ofSeconds(20)),
-            rampUsersPerSec(20).to(50).during(Duration.ofSeconds(30))
-        )
-        .protocols(HttpProtocolConfig.getHttpProtocol()));
+```java
+public class AuthorizedUserSimulation extends Simulation {
+    {
+        setUp(
+            getAuthorizedUserScenario()
+                .injectOpen(
+                    constantUsersPerSec(20).during(Duration.ofSeconds(20)),
+                    rampUsersPerSec(20).to(50).during(Duration.ofSeconds(30))
+                )
+                .protocols(HttpProtocolConfig.getHttpProtocol()));
+    }
+}
 ```
 2. **Implement Error Handling Logic:** It's advisable to integrate error-handling mechanisms into testing scenarios, such as automatically retrying requests upon receiving a 429 status code, with a suitable delay between retry attempts.<br/>
 
